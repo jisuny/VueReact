@@ -20,10 +20,9 @@
 
       작업 내용
         1. 페이지가 로딩되면 {{message}} 자리에 "change message at mounted!!!" 를 출력하시오.
-        2. 페이지가 로딩 3초 후에 {{message}} 자리에 "change message after 3 seconds!!!" 를 출력하시오.
-        3. 페이지가 로딩 5초 후에 {{message}} 자리에 "change message after 5 seconds!!!" 를 출력하시오.
-        4. 버튼을 클릭하면 {{message}} 자리에 "change message when a button clicked!!!" 를 출력하시오.
-
+        2. 버튼을 클릭하면 {{message}} 자리에 "change message when a button clicked!!!" 를 출력하시오.
+        3. 페이지가 로딩 3초 후에 {{message}} 자리에 "change message after 3 seconds!!!" 를 출력하시오.
+        4. 페이지가 로딩 5초 후에 {{message}} 자리에 "change message after 5 seconds!!!" 를 출력하시오.
     </pre>
     <hr>
     <div id="my">
@@ -38,7 +37,7 @@
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 
 <script>
-    new Vue({
+    var vm = new Vue({
         el: '#my',
         data: {
             message: "change message at mounted!!!"
@@ -46,7 +45,21 @@
         methods: {
             doClick: function (e) {
                 this.$data.message = "change message when a button clicked!!!"
-            }
+            },
+        },
+        mounted: function (e) {
+            this.$data.message = "change message at mounted!!!"
         }
-    })
+    });
+
+    window.setTimeout(function () {
+        vm.$data.message = "change message after 3 seconds!!!";
+        //this.$data.message = "change message after 3 seconds!!!"; 인스턴스 안에 있을때
+    }, 3000);
+
+    window.setTimeout(function () {
+        vm.$data.message = "change message after 5 seconds!!!";
+        //this.$data.message = "change message after 5 seconds!!!"; 인스턴스 안에 있을때
+    }, 5000);
+
 </script>

@@ -17,12 +17,42 @@
         온라인 babel 컴파일러 : https://babeljs.io/repl/
     </pre>
     <hr>
-    <div id="output">
+    <div id="output_es5">
+
+    </div>
+    <div id="output_es6">
 
     </div>
 
 </body>
 
 </html>
+
+<script type="text/javascript">
+    // ES5
+    var name = 'abc',
+        age = 10;
+
+    var getMessage = function () {
+        return "Hello, es5"
+    }
+    var output_es5 = document.getElementById('output_es5');
+    output_es5.innerText = getMessage();
+</script>
+
+<!-- babel 사용 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+<script type="text/babel">
+    const name = "abc"; //읽기 전용
+    let age = 10; //읽기 쓰기
+
+    const getMessage = () => {
+        return "Hello es6"
+    }
+
+    const output_es6 = document.getElementById('output_es6');
+    output_es6.innerText = getMessage();
+</script>
+<!-- //babel 사용 -->
 
 <!-- Your custom script here -->

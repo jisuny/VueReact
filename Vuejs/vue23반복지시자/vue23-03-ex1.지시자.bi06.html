@@ -39,6 +39,7 @@
                 </tr>
             </tbody>
         </table>
+        <button v-on:click="upBtn">button</button>
     </div>
 
 </body>
@@ -46,3 +47,31 @@
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            contacts: [
+                { i: 0, name: "설현", tel: "5634", address: "546" },
+                { i: 0, name: "혜리", tel: "5634", address: "546" },
+                // { i: 0, name: "하니", tel: "797", address: "7897" }
+            ]
+        },
+        // template: "",
+        methods: {
+            upBtn: function (e) {
+                Vue.set(this.$data.contacts, this.$data.contacts.length, { i: 0, name: "하니", tel: "797", address: "7897" });
+            }
+        },
+        // components: {
+
+        // },
+        // computed: {
+
+        // },
+        // watch: {
+
+        // },
+    })
+</script>
