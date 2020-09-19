@@ -10,11 +10,13 @@
         body {
             background-color: lightgrey;
         }
-        body > * {
+
+        body>* {
             text-align: center;
             vertical-align: middle;
             line-height: 2em;
         }
+
         p {
             top: 50%;
             text-align: center;
@@ -23,7 +25,7 @@
 
         header {
             background-color: orange;
-            margin: 10px 0 ;
+            margin: 10px 0;
             width: 100%;
             height: 60px;
         }
@@ -31,23 +33,25 @@
         /* <div id="content-list"> */
         #content {
             background-color: white;
-            margin: 0 0 30px 0 ;
+            margin: 0 0 30px 0;
         }
 
         aside {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             height: 200px;
             float: left;
         }
+
         #content-list {
             background-color: gray;
-            margin: 20px ;
+            margin: 20px;
             width: calc(50% - 40px);
             float: right;
             height: 200px;
         }
+
         #content::after {
             clear: both;
             display: block;
@@ -55,7 +59,7 @@
         }
 
         footer {
-            margin: 10px 0 ;
+            margin: 10px 0;
             background-color: lightblue;
             width: 100%;
             height: 50px;
@@ -65,23 +69,85 @@
 </head>
 
 <body>
-    <header>
-        Header
-    </header>
-    <div id="content">
-        <p>Content</p>
-        <aside>
-            Aside
-        </aside>
-        <div id="content-list">
-            List
-        </div>
+    <div id="app">
+        <header-box></header-box>
+        <content-box></content-box>
+        <footer-box></footer-box>
     </div>
-    <footer>
-        Footer
-    </footer>
 </body>
 
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    Vue.component("header-box", {
+        props: null,
+        data: function () {
+            return {}
+        },
+        template: `
+        <header>
+            Header
+        </header>
+        `,
+    });
+
+    var asideBox = {
+        props: null,
+        data: function () {
+            return {}
+        },
+        template: `
+            <aside>
+                Aside
+            </aside>
+        `,
+    };
+
+    var contentList = {
+        props: null,
+        data: function () {
+            return {}
+        },
+        template: `
+            <div id="content-list">
+                List
+            </div>
+        `,
+    };
+
+    Vue.component("content-box", {
+        props: null,
+        data: function () {
+            return {}
+        },
+        template: `
+        <div id="content">
+            <p>Content</p>
+            <aside-box></aside-box>
+            <content-list-box></content-list-box>
+        </div>
+        `,
+        components: {
+            "aside-box": asideBox,
+            "content-list-box": contentList
+        },
+    });
+
+    Vue.component("footer-box", {
+        props: null,
+        data: function () {
+            return {}
+        },
+        template: `
+        <footer>
+            Footer
+        </footer>
+        `,
+    });
+
+    new Vue({
+        el: "#app",
+    });
+</script>
