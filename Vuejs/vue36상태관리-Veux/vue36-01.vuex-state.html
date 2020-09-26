@@ -11,7 +11,7 @@
 
     <!-- CSS import -->
     <link rel="stylesheet" href="../css/reset.css">
-	
+
 </head>
 
 <body>
@@ -46,6 +46,8 @@
                    this.$store.commit("action명", payload) 을 사용하여 호출
        . state : 컴포넌트 간에 공유할 data
        . getter:
+
+       
     </pre>
     <hr>
     <div id="app">
@@ -53,11 +55,63 @@
         <h2>{{welcome}}</h2>
         <h3>{{counter}}</h3>
         <button v-on:click="increment">나를 눌러줘</button>
+        <button v-on:click="decrement">나를 빼줘</button>
     </div>
 </body>
 
 </html>
 
 <!-- vue 스크립트 플러그인 임포트 -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+<script>
+    var store = new Vuex.Store({
+        actions: {
+            increment: function (mutations, value) {
+                mutations.commit('increment', value)
+            },
+            decrement: function (mutations, value) {
+                mutations.commit('decrement', value)
+            }
+        },
+        mutations: {
+            increment: function (state, value) {
+                state.counter = state.counter + value;
+            },
+            decrement: function (state, value) {
+                state.counter = state.counter - value;
+            }
+        },
+        state: {
+            counter: 0,
+        },
+        getters: {
+            counter: function (state) {
+                return state.counter;
+            }
+        }
+    });
 
-
+    new Vue({
+        el: '#app',
+        data: {
+            header: "veux 사용앱",
+            welcome: "hello,world",
+        },
+        methods: {
+            increment: function (e) {
+                // this.$data.counter = this.$data.counter + 1;
+                store.dispatch('increment', 1);
+            },
+            decrement: function (e) {
+                // this.$data.counter = this.$data.counter - 1;
+                store.dispatch('decrement', 1);
+            }
+        },
+        computed: {
+            counter: function () {
+                return store.getters.counter;
+            }
+        },
+    });
+</script>
