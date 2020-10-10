@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
 
-</head>
-
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
         ES6의 class 키워드를 사용하여 컴포넌트를 만드는 방법을 학습한다.
         컴포넌트 이름을 HelloReact로 만들고 "Hello, React!!!"를 출력하시오.
 
@@ -27,11 +26,51 @@
         단계4. React.Component 만들기
         단계5. ReactDOM.render() 에 컴포넌트 주입
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app"></div>
-</body>
-
+  </body>
 </html>
 
 <!-- react 플러그인 include   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+
+<script type="text/babel">
+  //import React, { Component } from 'react';
+  //import ReactDOM from 'react-dom'
+
+  console.log(React);
+  console.log(ReactDOM);
+
+  class HelloReact extends React.Component {
+    state = { mesg: "Hello, React!!!" };
+    constructor(props) {
+      super(props);
+      // this 바인딩
+    }
+    componentDidMount() {
+      // 마운트 완료 후에 : 한번만 사용
+    }
+    componentDidUpdate(prevProps, prevState) {
+      // 업데이트 완료 후에 : 여러번 , state 가 변경될 때마다
+    }
+    componentWillUnmount() {
+      // 언마운트 완료 후에 : 페이지 unload 될때 한번
+    }
+    handler = (e) => {
+      // 이벤트 핸들러를 화살표 함수로 만들면 constructor(생성자) 에서 this bind()를 생략해도 된다
+    };
+    render() {
+      return (
+        <div>
+          <p>{this.state.mesg}</p>
+        </div>
+      );
+    }
+  }
+  //export default HelloReact;
+
+  ReactDOM.render(<HelloReact></HelloReact>, document.getElementById("app"));
+</script>

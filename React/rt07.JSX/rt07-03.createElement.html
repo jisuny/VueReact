@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        #container {
-            padding: 50px;
-            background-color: #eee;
-        }
+      #container {
+        padding: 50px;
+        background-color: #eee;
+      }
 
-        #container h1 {
-            font-size: 144x;
-            font-family: "맑은고딕코딩";
-            color: #0080a8;
-        }
+      #container h1 {
+        font-size: 144x;
+        font-family: "맑은고딕코딩";
+        color: #0080a8;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <xmp>
         React.createElement() 를 사용하여 html 태그 생성 방법을 알아본다.
 
@@ -39,14 +38,69 @@
             </p>
         </h1>
     </xmp>
-    <hr>
+    <hr />
 
     <div id="wrap1"></div>
-    <hr>
+    <hr />
     <div id="wrap2"></div>
-</body>
-
+  </body>
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+
+<script type="text/babel">
+  //import React, { Component } from 'react';
+  //import ReactDOM from 'react-dom'
+
+  console.log(React);
+  console.log(React.Component);
+  console.log(ReactDOM);
+
+  class Greeting extends React.Component {
+    static defaultProps = {
+      /*  props의 디폴트 값 설정 */
+    };
+    static propsTypes = {
+      /* props의 프로퍼티 타입 설정 */
+    };
+    state = {};
+    constructor(props) {
+      super(props);
+      // this 바인딩
+    }
+    componentDidMount() {
+      // 마운트 완료 후에 : 한번만 사용
+    }
+    componentDidUpdate(prevProps, prevState) {
+      // 업데이트 완료 후에 : 여러번 , state 가 변경될 때마다
+    }
+    componentWillUnmount() {
+      // 언마운트 완료 후에 : 페이지 unload 될때 한번
+    }
+    handler = (e) => {
+      // 이벤트 핸들러를 화살표 함수로 만들면 constructor(생성자) 에서 this bind()를 생략해도 된다
+    };
+    render() {
+      //   return <h1 id="greeting">Hello, React!!!</h1>;
+      //   React.createElement(
+      //     "h1", //태그명
+      //     { id: "greeting" }, //태그 속성들
+      //     "Hello, React!!!" //innerHtml
+      //   );
+    }
+  }
+
+  //export default Greeting;
+  ReactDOM.render(
+    React.createElement(
+      "h1", //태그명
+      { id: "greeting" }, //태그 속성들
+      React.createElement("p", {}, "test!!") //innerHtml
+    ),
+    document.getElementById("wrap1")
+  );
+</script>

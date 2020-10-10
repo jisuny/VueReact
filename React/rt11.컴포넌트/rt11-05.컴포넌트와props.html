@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
-</head>
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
 
-<body>
+  <body>
     <xmp>
         HelloWorld 컴포넌트를 만들고 컴포넌트에 인자를 넘기는 방법, props 을 학습한다.
 
@@ -20,17 +19,47 @@
         Hello, react world!!! 3 - component
         Hello, react world!!! 4 - component
         Hello, react world!!! 5 - component
+        <div>Hello, react world!!! {this.props.num} - component</div>
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app"></div>
-</body>
-
+  </body>
 </html>
 
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
+<script type="text/babel">
+  //import React, { Component } from 'react';
+  //import ReactDOM from 'react-dom'
 
+  console.log(React);
+  console.log(ReactDOM);
 
-
+  class Text extends React.Component {
+    state = {};
+    constructor(props) {
+      super(props);
+      // this 바인딩
+    }
+    render() {
+      return <div>Hello, react world!!! {this.props.num} - component</div>;
+    }
+  }
+
+  //export default Textv;
+  ReactDOM.render(
+    <div>
+      <Text num={1}></Text>
+      <Text num={2}></Text>
+      <Text num={3}></Text>
+      <Text num={4}></Text>
+      <Text num={5}></Text>
+    </div>,
+    document.getElementById("app")
+  );
+</script>

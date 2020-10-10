@@ -39,20 +39,23 @@
                 this.handler = this.handler.bind(this);
             }
             componentDidMount() {
-                // 마운트 완료 후에 
+                // 마운트 완료 후에 : 한번만 사용
             }
             componentDidUpdate() {
-                // 업데이트 완료 후에 
+                // 업데이트 완료 후에 : 여러번 , state 가 변경될 때마다
             }
             componentWillUnmount() {
-                // 언마운트 완료 후에 
+                // 언마운트 완료 후에 : 페이지 unload 될때 한번
             }
             handler(e){
                 // 이벤트 핸들러는 constructor(생성자)에서 this를 bind() 처리해야 한다
             }
+            handler = (e) =>{
+                // 이벤트 핸들러를 화살표 함수로 만들면 constructor(생성자) 에서 this bind()를 생략해도 된다
+            }
             render() {
                 return (
-                    <div onClick="handler">{this.props.name}, {this.state.name}</div>
+                    <div onClick={this.handler}>{this.props.name}, {this.state.name}</div>
                 );
             }
         };
@@ -98,3 +101,49 @@
 
 
 <!-- react 플러그인 include   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/* import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+
+<script type="text/babel">
+    //import React, { Component } from 'react';
+    //import ReactDOM from 'react-dom'
+    
+    console.log(React);
+    console.log(ReactDOM); //플러그인 잘 되는지 확인
+    
+    class Comp extends React.Component {
+    
+        state = {mesg: "hi!!!!"}
+        constructor(props) {
+            super(props);
+            // this 바인딩
+    
+        }
+        componentDidMount() {
+    
+        }
+        componentDidUpdate(prevProps, prevState) {
+    
+        }
+        componentWillUnmount() {
+    
+        }
+        handler = (e) =>{
+            console.log(event.target, this, );
+            console.log(event.target, this.props.name, this.state.mesg);
+        }
+        render() {
+            return (
+                <div onClick={this.handler}>{this.props.name}, {this.state.mesg}</div>
+            );
+        }
+    };
+    
+    //export default Comp;
+
+    //component 를 화면에 붙이는 작업
+    ReactDOM.render(
+        <Comp name="Batman"></Comp>, document.getElementById('app')
+        );
+</script>
